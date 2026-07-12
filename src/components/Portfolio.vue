@@ -149,13 +149,14 @@ const meusProjetos = ref<Projeto[]>([
   }
 ])
 
+// AJUSTADO: Mudado "filtro in project" para "filtro in projeto"
 const projetosFiltrados = computed(() => {
   const filtro = filtroSelecionado.value
   if (filtro === 'todos' || !filtro) {
     return meusProjetos.value
   }
   return meusProjetos.value.filter(projeto => {
-    if (filtro in project) {
+    if (filtro in projeto) {
       const categoria = projeto[filtro as keyof typeof projeto]
       return Array.isArray(categoria) && categoria.length > 0
     }
@@ -252,11 +253,11 @@ function selecionarFiltro(id: string) {
               Acessar Sistema →
             </a>
             
-            <a v-if="projeto.link_painel_administrative && projeto.link !== '#'" :href="projeto.link_painel_administrativo" target="_blank" rel="noopener" class="btn-project-link" style="color: #64748b;">
+            <!-- AJUSTADO: de link_painel_administrative para link_painel_administrativo -->
+            <a v-if="projeto.link_painel_administrativo && projeto.link !== '#'" :href="projeto.link_painel_administrativo" target="_blank" rel="noopener" class="btn-project-link" style="color: #64748b;">
               Painel Admin →
             </a>
         
-            <!-- 2. Condicionais atualizadas para os links do GitHub -->
             <!-- Caso o projeto possua repositório único tradicional -->
             <a v-if="projeto.repositorio && projeto.repositorio !== '#'" :href="projeto.repositorio" target="_blank" rel="noopener" class="btn-repo-link">
               💻 GitHub
@@ -283,7 +284,6 @@ function selecionarFiltro(id: string) {
 </template>
 
 <style scoped>
-/* Mantive todo o seu CSS original intacto */
 .portfolio-page {
   width: 100%;
   min-height: 100vh;
