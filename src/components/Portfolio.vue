@@ -5,33 +5,55 @@ import certificadoTecnico from '../assets/Certificado_Desenvolvedor_web.pdf';
 
 defineEmits(['voltar'])
 
-// 1. Botões de filtro superiores baseados nas camadas da Stack
 const filtros = ref([
-  { id: 'todos', nome: 'Todos', icone: '📂' },
-  { id: 'web_base', nome: 'Web Base', icone: '🌐' },
-  { id: 'controle_versao', nome: 'Controle de Versão', icone: '🐙' },
-  { id: 'frameworks', nome: 'Frameworks', icone: '🟢' },
-  { id: 'banco_dados', nome: 'Banco de Dados', icone: '🗄️' },
-  { id: 'back_end', nome: 'Back-End', icone: '⚙️' }
+  { id: 'todos', nome: 'Todos', icone: '📂', usarSvg: false },
+  { id: 'web_base', nome: 'Web Base', icone: '🌐', usarSvg: false },
+  { id: 'controle_versao', nome: 'Controle de Versão', icone: '', usarSvg: true }, 
+  { id: 'frameworks', nome: 'Frameworks', icone: '🟢', usarSvg: false },
+  { id: 'banco_dados', nome: 'Banco de Dados', icone: '🗄️', usarSvg: false },
+  { id: 'back_end', nome: 'Back-End', icone: '⚙️', usarSvg: false }
 ])
 
 const filtroSelecionado = ref('todos')
 
-// 2. Seus Sistemas (Corrigido: link_painel_administrativo)
-const meusProjetos = ref([
- {
-  id: 1,
-  titulo: 'UaiGo - App de Mobilidade',
-  descricao: 'Aplicativo de corrida compartilhado com rastreamento e mapas em tempo real para motoristas e passageiros.',
-  web_base: ['HTML', 'CSS', 'JavaScript'],
-  frameworks: ['React Native'],
-  banco_dados: ['Firebase'],
-  controle_versao: ['Git', 'GitHub'],
-  back_end: ['Node.js'],
-  link: 'https://meu-painel-rk75.vercel.app/', 
-  link_painel_administrativo: 'https://meu-painel-rk75.vercel.app/', 
-  imagem: 'https://images.unsplash.com/photo-1549576490-b0b4831ef60a?w=500&auto=format&fit=crop&q=60'
-},
+// 1. Interface atualizada para suportar múltiplos repositórios opcionais
+interface Projeto {
+  id: number;
+  titulo: string;
+  descricao: string;
+  web_base: string[];
+  frameworks: string[];
+  banco_dados: string[];
+  controle_versao: string[];
+  back_end: string[];
+  link: string;
+  link_painel_administrativo?: string; 
+  repositorio?: string;           // Para os projetos de repositório único
+  repositorio_painel?: string;    // Específico do UaiGo
+  repositorio_aplicativo?: string;// Específico do UaiGo
+  certificado?: string;
+  imagem: string;
+}
+
+const meusProjetos = ref<Projeto[]>([
+  {
+    id: 1,
+    titulo: 'UaiGo - App de Mobilidade',
+    descricao: 'Aplicativo de corrida compartilhado com rastreamento e mapas em tempo real para motoristas e passageiros.',
+    web_base: ['HTML', 'CSS', 'JavaScript'],
+    frameworks: ['React Native'],
+    banco_dados: ['Firebase'],
+    controle_versao: ['Git', 'GitHub'],
+    back_end: ['Node.js'],
+    
+    link: 'https://meu-painel-m7i3.vercel.app/', 
+    link_painel_administrativo: 'https://meu-painel-m7i3.vercel.app/', 
+    
+    repositorio_painel: 'https://github.com/lucaslopes9/meu_Painel.git', 
+    repositorio_aplicativo: 'https://github.com/lucaslopes9/Uai_go_aplicativo.git', 
+    
+    imagem: 'https://images.unsplash.com/photo-1549576490-b0b4831ef60a?w=500&auto=format&fit=crop&q=60'
+  },
   {
     id: 2,
     titulo: 'Relógio Digital Dinâmico',
@@ -42,6 +64,7 @@ const meusProjetos = ref([
     controle_versao: ['Git', 'GitHub'],
     back_end: [],
     link: 'https://relogio-digital-zeta.vercel.app/',
+    repositorio: 'https://github.com/lucaslopes9/relogioDigital',
     imagem: 'https://images.unsplash.com/photo-1508962914676-134849a727f0?w=500&auto=format&fit=crop&q=60'
   },
   {
@@ -54,6 +77,7 @@ const meusProjetos = ref([
     controle_versao: ['Git', 'GitHub'],
     back_end: ['Node.js'],
     link: 'https://conecta-talentos-lope.vercel.app',
+    repositorio: 'https://github.com/lucaslopes9/Conecta_talentos.git',
     imagem: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=500&auto=format&fit=crop&q=60'
   },
   {
@@ -66,6 +90,7 @@ const meusProjetos = ref([
     controle_versao: ['Git', 'GitHub'],
     back_end: ['PHP', 'Laravel'],
     link: '#',
+    repositorio: 'https://github.com/lucaslopes9/Sistemas_de_Rifas.git',
     imagem: 'https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=500&auto=format&fit=crop&q=60'
   },
   {
@@ -78,6 +103,7 @@ const meusProjetos = ref([
     controle_versao: ['Git', 'GitHub'],
     back_end: ['Node.js'],
     link: 'https://makeyour-d-og-oficial-neon.vercel.app/',
+    repositorio: 'https://github.com/lucaslopes9/MakeyourDOgOficial.git',
     imagem: 'https://images.unsplash.com/photo-1619740455993-9e612b1af08a?w=500&auto=format&fit=crop&q=60'
   },
   {
@@ -91,6 +117,7 @@ const meusProjetos = ref([
     back_end: [],
     link: 'https://loja-virtual-de-jogos-finalizada.vercel.app',
     certificado: certificadoTecnico,
+    repositorio: '#',
     imagem: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop&q=60'
   },
   {
@@ -117,18 +144,18 @@ const meusProjetos = ref([
     controle_versao: ['Git', 'GitHub'],
     back_end: ['PHP'],
     link: '#', 
+    repositorio: '#',
     imagem: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&auto=format&fit=crop&q=60'
   }
 ])
 
-// 3. Filtro dinâmico blindado
 const projetosFiltrados = computed(() => {
   const filtro = filtroSelecionado.value
   if (filtro === 'todos' || !filtro) {
     return meusProjetos.value
   }
   return meusProjetos.value.filter(projeto => {
-    if (filtro in projeto) {
+    if (filtro in project) {
       const categoria = projeto[filtro as keyof typeof projeto]
       return Array.isArray(categoria) && categoria.length > 0
     }
@@ -158,7 +185,12 @@ function selecionarFiltro(id: string) {
         :class="{ 'active-card': filtroSelecionado === item.id }"
         @click="selecionarFiltro(item.id)"
       >
-        <span class="tech-icon">{{ item.icone }}</span>
+        <div class="tech-icon" :class="{ 'git-bg': item.usarSvg }">
+          <span v-if="!item.usarSvg">{{ item.icone }}</span>
+          <svg v-else viewBox="0 0 24 24" class="git-svg">
+            <path fill="currentColor" d="M22.6 11.4L12.6 1.4c-.4-.4-1-.4-1.4 0l-2.5 2.5l2.2 2.2c.4-.1.8 0 1.1.3c.4.4.4 1 .1 1.4c-.3.4-.8.5-1.2.3L8.6 10.3c-.2.4-.6.6-1.1.6c-.7 0-1.3-.6-1.3-1.3c0-.5.3-.9.7-1.1L4.7 6.3c-.4.4-1 .4-1.4 0L1.4 4.4c-.4-.4-.4-1 0-1.4L3.9.5c.4-.4 1-.4 1.4 0l1.6 1.6L5.3 3.7c-.4-.1-.8 0-1.1-.3c-.4-.4-.4-1-.1-1.4c.3-.4.8-.5 1.2-.3L7.6 4.3c.2-.4.6-.6 1.1-.6c.5 0 .9.3 1.1.7L12.3 2c-.4-.4-.4-1 0-1.4L14.4.1c.4-.4 1-.4 1.4 0l8.6 8.6c.6.5.6 1.5 0 2.1l-1.8 1.8c-.4.4-1 .4-1.4 0l-1.6-1.6l2.2-2.2c.4.1.8 0 1.1.3c.5.4.5 1 .1 1.4zM7.5 18.2c-.7 0-1.3-.6-1.3-1.3c0-.5.3-.9.7-1.1V10.7c-.4-.2-.7-.6-.7-1.1c0-.7.6-1.3 1.3-1.3s1.3.6 1.3 1.3c0 .5-.3.9-.7 1.1v5.1c.4.2.7.6.7 1.1c0 .7-.6 1.3-1.3 1.3z" />
+          </svg>
+        </div>
         <h3>{{ item.nome }}</h3>
       </div>
     </div>
@@ -215,17 +247,28 @@ function selecionarFiltro(id: string) {
           </div>
           
           <div class="project-actions">
-            <a v-if="projeto.link" :href="projeto.link" target="_blank" rel="noopener" class="btn-project-link">
+            <!-- Link principal da aplicação se não for cerquilha -->
+            <a v-if="projeto.link && projeto.link !== '#'" :href="projeto.link" target="_blank" rel="noopener" class="btn-project-link">
               Acessar Sistema →
             </a>
             
-            <!-- CORRIGIDO AQUI: propriedade alterada para terminar com "o" -->
-            <a v-if="projeto.link_painel_administrativo" :href="projeto.link_painel_administrativo" target="_blank" rel="noopener" class="btn-project-link" style="color: #64748b;">
+            <a v-if="projeto.link_painel_administrative && projeto.link !== '#'" :href="projeto.link_painel_administrativo" target="_blank" rel="noopener" class="btn-project-link" style="color: #64748b;">
               Painel Admin →
             </a>
         
-            <a v-if="projeto.repositorio" :href="projeto.repositorio" target="_blank" rel="noopener" class="btn-repo-link">
+            <!-- 2. Condicionais atualizadas para os links do GitHub -->
+            <!-- Caso o projeto possua repositório único tradicional -->
+            <a v-if="projeto.repositorio && projeto.repositorio !== '#'" :href="projeto.repositorio" target="_blank" rel="noopener" class="btn-repo-link">
               💻 GitHub
+            </a>
+
+            <!-- Caso possua repositórios divididos (Como o UaiGo) -->
+            <a v-if="projeto.repositorio_painel" :href="projeto.repositorio_painel" target="_blank" rel="noopener" class="btn-repo-link">
+              💻 GitHub (Painel)
+            </a>
+
+            <a v-if="projeto.repositorio_aplicativo" :href="projeto.repositorio_aplicativo" target="_blank" rel="noopener" class="btn-repo-link" style="color: #e5c07b;">
+              📱 GitHub (App)
             </a>
             
             <a v-if="projeto.certificado" :href="projeto.certificado" target="_blank" rel="noopener" class="btn-certificate-link">
@@ -240,7 +283,7 @@ function selecionarFiltro(id: string) {
 </template>
 
 <style scoped>
-/* --- CONFIGURAÇÃO GERAL DA PÁGINA --- */
+/* Mantive todo o seu CSS original intacto */
 .portfolio-page {
   width: 100%;
   min-height: 100vh;
@@ -288,7 +331,6 @@ function selecionarFiltro(id: string) {
   font-size: 1.1rem;
 }
 
-/* --- ESTILO DOS CARTÕES DE FILTRO --- */
 .tech-filters-container {
   display: flex;
   justify-content: center;
@@ -325,6 +367,17 @@ function selecionarFiltro(id: string) {
   border-radius: 8px;
 }
 
+.tech-icon.git-bg {
+  background-color: #f05032 !important; 
+  color: white;
+  padding: 10px;
+}
+
+.git-svg {
+  width: 100%;
+  height: 100%;
+}
+
 .tech-filter-card:hover {
   border-color: #42b883;
   transform: translateY(-4px);
@@ -342,7 +395,6 @@ function selecionarFiltro(id: string) {
   font-weight: 600;
 }
 
-/* --- GRID E CAIXAS DOS SISTEMAS FINAIS --- */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr); 
@@ -389,7 +441,6 @@ function selecionarFiltro(id: string) {
   line-height: 1.6;
 }
 
-/* CONTAINER DOS CONJUNTOS INTERNOS DE TECNOLOGIA */
 .tech-groups-container {
   display: flex;
   flex-direction: column;
@@ -433,9 +484,9 @@ function selecionarFiltro(id: string) {
 .tag-db { background-color: #b37d14; color: #ffeebf; }
 .tag-back { background-color: #4d235a; color: #f7bfff; }
 
-/* CONTAINER DAS AÇÕES */
 .project-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   align-items: center;
   margin-top: auto;
@@ -455,6 +506,19 @@ function selecionarFiltro(id: string) {
   padding-left: 4px;
 }
 
+.btn-repo-link {
+  color: #61dafb;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.95rem;
+  transition: 0.2s ease;
+}
+
+.btn-repo-link:hover {
+  color: white;
+  padding-left: 4px;
+}
+
 .btn-certificate-link {
   color: #ffc107;
   text-decoration: none;
@@ -469,7 +533,6 @@ function selecionarFiltro(id: string) {
   transform: translateY(-1px);
 }
 
-/* --- RESPONSIVIDADE --- */
 @media (max-width: 768px) {
   .projects-grid {
     grid-template-columns: 1fr; 
