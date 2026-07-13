@@ -2,9 +2,12 @@
 import { ref, computed } from 'vue'
 
 import certificadoTecnico from '../assets/Certificado_Desenvolvedor_web.pdf';
+import certificadoStackX from '../assets/Certificado_stackx.png';
+import printMuunFree from '../assets/fundo_transparente-removebg-preview.png'; // <-- Import da imagem para substituir o site fora do ar
 
 defineEmits(['voltar'])
 
+// 1. Botões de filtro superiores
 const filtros = ref([
   { id: 'todos', nome: 'Todos', icone: '📂', usarSvg: false },
   { id: 'web_base', nome: 'Web Base', icone: '🌐', usarSvg: false },
@@ -16,7 +19,7 @@ const filtros = ref([
 
 const filtroSelecionado = ref('todos')
 
-// 1. Interface atualizada para suportar múltiplos repositórios opcionais
+// Interface atualizada para blindar o TS contra os campos específicos do UaiGo
 interface Projeto {
   id: number;
   titulo: string;
@@ -28,13 +31,14 @@ interface Projeto {
   back_end: string[];
   link: string;
   link_painel_administrativo?: string; 
-  repositorio?: string;           // Para os projetos de repositório único
-  repositorio_painel?: string;    // Específico do UaiGo
-  repositorio_aplicativo?: string;// Específico do UaiGo
+  repositorio?: string;
+  repositorio_painel?: string;      
+  repositorio_aplicativo?: string;  
   certificado?: string;
   imagem: string;
 }
 
+// 2. Seus Sistemas com Links do GitHub configurados e Tipados
 const meusProjetos = ref<Projeto[]>([
   {
     id: 1,
@@ -45,13 +49,10 @@ const meusProjetos = ref<Projeto[]>([
     banco_dados: ['Firebase'],
     controle_versao: ['Git', 'GitHub'],
     back_end: ['Node.js'],
-    
     link: 'https://meu-painel-m7i3.vercel.app/', 
     link_painel_administrativo: 'https://meu-painel-m7i3.vercel.app/', 
-    
     repositorio_painel: 'https://github.com/lucaslopes9/meu_Painel.git', 
     repositorio_aplicativo: 'https://github.com/lucaslopes9/Uai_go_aplicativo.git', 
-    
     imagem: 'https://images.unsplash.com/photo-1549576490-b0b4831ef60a?w=500&auto=format&fit=crop&q=60'
   },
   {
@@ -143,13 +144,14 @@ const meusProjetos = ref<Projeto[]>([
     banco_dados: ['MySQL'],
     controle_versao: ['Git', 'GitHub'],
     back_end: ['PHP'],
-    link: '#', 
+    link: printMuunfree, // <-- Agora a variável da imagem é o link. O botão vai aparecer perfeitamente!
     repositorio: '#',
+    certificado: printMuunFree, 
     imagem: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&auto=format&fit=crop&q=60'
   }
 ])
 
-// AJUSTADO: Mudado "filtro in project" para "filtro in projeto"
+// 3. Filtro dinâmico blindado
 const projetosFiltrados = computed(() => {
   const filtro = filtroSelecionado.value
   if (filtro === 'todos' || !filtro) {
@@ -248,22 +250,18 @@ function selecionarFiltro(id: string) {
           </div>
           
           <div class="project-actions">
-            <!-- Link principal da aplicação se não for cerquilha -->
             <a v-if="projeto.link && projeto.link !== '#'" :href="projeto.link" target="_blank" rel="noopener" class="btn-project-link">
               Acessar Sistema →
             </a>
             
-            <!-- AJUSTADO: de link_painel_administrative para link_painel_administrativo -->
-            <a v-if="projeto.link_painel_administrativo && projeto.link !== '#'" :href="projeto.link_painel_administrativo" target="_blank" rel="noopener" class="btn-project-link" style="color: #64748b;">
+            <a v-if="projeto.link_painel_administrativo" :href="projeto.link_painel_administrativo" target="_blank" rel="noopener" class="btn-project-link" style="color: #64748b;">
               Painel Admin →
             </a>
         
-            <!-- Caso o projeto possua repositório único tradicional -->
             <a v-if="projeto.repositorio && projeto.repositorio !== '#'" :href="projeto.repositorio" target="_blank" rel="noopener" class="btn-repo-link">
               💻 GitHub
             </a>
 
-            <!-- Caso possua repositórios divididos (Como o UaiGo) -->
             <a v-if="projeto.repositorio_painel" :href="projeto.repositorio_painel" target="_blank" rel="noopener" class="btn-repo-link">
               💻 GitHub (Painel)
             </a>
@@ -284,6 +282,7 @@ function selecionarFiltro(id: string) {
 </template>
 
 <style scoped>
+/* --- CONFIGURAÇÃO GERAL DA PÁGINA --- */
 .portfolio-page {
   width: 100%;
   min-height: 100vh;
@@ -331,6 +330,7 @@ function selecionarFiltro(id: string) {
   font-size: 1.1rem;
 }
 
+/* --- ESTILO DOS CARTÕES DE FILTRO --- */
 .tech-filters-container {
   display: flex;
   justify-content: center;
@@ -395,6 +395,7 @@ function selecionarFiltro(id: string) {
   font-weight: 600;
 }
 
+/* --- GRID E CAIXAS DOS SISTEMAS FINAIS --- */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr); 
