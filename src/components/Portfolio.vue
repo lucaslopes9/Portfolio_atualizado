@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue'
 
 import certificadoTecnico from '../assets/Certificado_Desenvolvedor_web.pdf?url';
-import certificadoStackX from '../assets/Certificado_stackx.png?url';
+import certificadoStackX from '../assets/Certificado_Stackx.png?url';
 // IMPORT CORRETO DA IMAGEM DO MUUN FREE (ajuste o nome do arquivo se necessário):
 import printMuunFree from "../assets/print_muunfree.jpg?url";
 
