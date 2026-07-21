@@ -78,12 +78,12 @@ const textos = {
     sobreH3: 'Professional focused on turning code into business value',
     sobreP1: 'Nice to meet you! I am Lucas, a software developer specialized in creating robust systems, dynamic applications, and high-converting websites. My mission is to understand your business pain points and build the exact digital tool to solve your problems and automate your processes.',
     sobreP2: 'With a solid technical background and a strategic mindset, I aim to deliver products that not only work perfectly but also offer an incredible experience and generate real revenue and engagement results.',
-    btnSobre: 'Let\'s talk?',
+    btnSobre: "Let's talk?",
     techH1: 'My Technical Stack',
     techP: 'A visual map of the technologies and tools I use in my professional daily routine.',
     footerDesc: 'Transforming complex ideas into high-impact web and mobile applications. Ready to take your company to the next digital level.',
     footerNav: 'Navigation',
-    footerContatoDesc: 'Have a project in mind? Let\'s build it together!',
+    footerContatoDesc: "Have a project in mind? Let's build it together!",
     btnFooter: 'Start Project'
   }
 }
@@ -138,8 +138,8 @@ function navegarPara(tela: string, secaoId?: string) {
       <a href="#" @click.prevent="navegarPara('home', 'servicos')">{{ t.servicos }}</a>
       <a href="#" @click.prevent="navegarPara('home', 'tecnologias')">{{ t.tecnologias }}</a>
       <a href="#" @click.prevent="navegarPara('portfolio')">{{ t.portfolio }}</a>
-
-<a :href="curriculoPdf" download="Curriculo_Lucas_Lopes.pdf" target="_blank">{{ t.curriculo }}</a>    </nav> 
+      <a :href="curriculoPdf" download="Curriculo_Lucas_Lopes.pdf" target="_blank">{{ t.curriculo }}</a>
+    </nav> 
   </header>
 
   <Portfolio v-if="telaAtiva === 'portfolio'" @voltar="navegarPara('home')" />
@@ -306,7 +306,7 @@ function navegarPara(tela: string, secaoId?: string) {
           <li>📱 (19) 971630276</li>
           <li>📍 Brasil</li>
         </ul>
-        <a href="https://wa.me/seu-numero" target="_blank" rel="noopener" class="btn-footer">
+        <a href="https://wa.me/5519971630276?text=Olá%20Lucas,%20gostaria%20de%20iniciar%20um%20projeto!" target="_blank" rel="noopener" class="btn-footer">
           {{ t.btnFooter }}
         </a>
       </div>
@@ -344,7 +344,7 @@ function navegarPara(tela: string, secaoId?: string) {
 
 /* --- HEADER PRINCIPAL --- */
 .meu-header {
-  display: flex;       
+  display: flex;        
   width: 100%;         
   padding: 20px;
   background-color: #1a1a1a; 
@@ -353,17 +353,17 @@ function navegarPara(tela: string, secaoId?: string) {
 }
 
 .logo-container {
-  flex: 1;              
+  flex: 1;                 
   display: flex;
   align-items: center; 
 }
 
 .menu-container {
-  flex: 1;              
+  flex: 1;                 
   display: flex;
   justify-content: flex-end; 
-  align-items: center;     
-  gap: 20px;                
+  align-items: center;          
+  gap: 20px;                    
 }
 
 .menu-container a {
@@ -374,7 +374,7 @@ function navegarPara(tela: string, secaoId?: string) {
 }
 
 .menu-container a:hover {
-  color: white;            
+  color: white;             
 }
 
 /* --- HERO SECTION --- */
@@ -389,9 +389,8 @@ function navegarPara(tela: string, secaoId?: string) {
   color: white;
   gap: 40px;
 
-  /* === ADICIONE ESSAS 3 LINHAS ABAIXO === */
   animation: fadeInHero 1.5s ease-out forwards;
-  opacity: 0; /* Começa invisível para o efeito funcionar */
+  opacity: 0;
 }
 
 .hero-content {
@@ -622,12 +621,7 @@ function navegarPara(tela: string, secaoId?: string) {
   }
 }
 
-.greetings {
-  margin-top: 40px;
-  text-align: center;
-}
-
-/* --- 3* SEÇÃO SOBRE MIM --- */
+/* --- 3ª SEÇÃO SOBRE MIM --- */
 .about-section {
   width: 100%;
   padding: 100px 20px;
@@ -646,7 +640,6 @@ function navegarPara(tela: string, secaoId?: string) {
   gap: 60px;
 }
 
-/* Bloco da Foto */
 .about-image {
   flex: 1;
   display: flex;
@@ -662,7 +655,6 @@ function navegarPara(tela: string, secaoId?: string) {
   object-fit: cover;
 }
 
-/* Bloco do Texto */
 .about-content {
   flex: 1.2;
   display: flex;
@@ -737,7 +729,6 @@ function navegarPara(tela: string, secaoId?: string) {
   font-size: 1.1rem;
 }
 
-/* Container do Varal */
 .tech-tree {
   display: flex;
   justify-content: space-between;
@@ -749,7 +740,6 @@ function navegarPara(tela: string, secaoId?: string) {
   gap: 15px;
 }
 
-/* A linha horizontal do "varal" */
 .tech-tree::before {
   content: '';
   position: absolute;
@@ -761,7 +751,6 @@ function navegarPara(tela: string, secaoId?: string) {
   z-index: 1;
 }
 
-/* Cada ramificação */
 .tech-branch {
   display: flex;
   flex-direction: column;
@@ -770,7 +759,6 @@ function navegarPara(tela: string, secaoId?: string) {
   z-index: 2;
 }
 
-/* Título superior */
 .branch-title {
   background-color: #2c3e50;
   color: #bfecff;
@@ -788,7 +776,6 @@ function navegarPara(tela: string, secaoId?: string) {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* A setinha/linha vertical */
 .branch-connector {
   width: 2px;
   height: 25px;
@@ -796,7 +783,6 @@ function navegarPara(tela: string, secaoId?: string) {
   position: relative;
 }
 
-/* Ponta da setinha para baixo */
 .branch-connector::after {
   content: '▼';
   position: absolute;
@@ -807,7 +793,6 @@ function navegarPara(tela: string, secaoId?: string) {
   font-size: 0.6rem;
 }
 
-/* Caixa branca inferior */
 .tech-box {
   background-color: #ffffff;
   color: #1a1a1a;
@@ -834,7 +819,7 @@ function navegarPara(tela: string, secaoId?: string) {
   text-align: center;
 }
 
-/* --- ÚLTIMA SEÇÃO (FOOTER / TRÊS DIVISÕES) --- */
+/* --- FOOTER --- */
 .footer-section {
   width: 100%;
   padding: 80px 20px 40px 20px;
@@ -879,14 +864,12 @@ function navegarPara(tela: string, secaoId?: string) {
   line-height: 1.6;
 }
 
-/* Customização da Coluna 1 */
 .brand-box .copyright {
   font-size: 0.85rem;
   color: #666666;
   margin-top: auto;
 }
 
-/* Customização da Coluna 2 */
 .links-box ul {
   list-style: none;
   padding: 0;
@@ -908,7 +891,6 @@ function navegarPara(tela: string, secaoId?: string) {
   padding-left: 5px;
 }
 
-/* Customização da Coluna 3 */
 .contact-list {
   list-style: none;
   padding: 0;
@@ -970,11 +952,14 @@ function navegarPara(tela: string, secaoId?: string) {
     flex-direction: column;
     gap: 30px;
     align-items: center;
-    max-width: 450px;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 10px;
   }
 
   .tech-branch {
     width: 100%;
+    max-width: 400px;
   }
 
   .branch-connector {
@@ -983,10 +968,10 @@ function navegarPara(tela: string, secaoId?: string) {
   
   .tech-box {
     min-height: auto;
+    width: 100%;
+    box-sizing: border-box;
   }
 }
-
-
 
 @media (max-width: 768px) {
   .meu-header {
@@ -998,48 +983,12 @@ function navegarPara(tela: string, secaoId?: string) {
 
   .menu-container {
     flex-direction: row;
-    flex-wrap: wrap; /* Permite que os links quebrem linha se não couberem */
+    flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
     font-size: 0.9rem;
   }
 }
-
-
-
-@media (max-width: 968px) {
-  .tech-tree::before {
-    display: none;
-  }
-
-  .tech-tree {
-    flex-direction: column;
-    gap: 30px;
-    align-items: center;
-    width: 100%; /* Garante que use o espaço disponível */
-    max-width: 100%;
-    padding: 0 10px; /* Margem de segurança para o celular */
-  }
-
-  .tech-branch {
-    width: 100%;
-    max-width: 400px; /* Limita o tamanho para não ficar gigante em tablets */
-  }
-
-  .branch-connector {
-    height: 15px;
-  }
-  
-  .tech-box {
-    min-height: auto;
-    width: 100%;
-    box-sizing: border-box; /* Garante que o padding não aumente o tamanho da caixa */
-  }
-}
-
-
-
-
 
 .seletor-idioma {
   display: flex;
@@ -1063,12 +1012,10 @@ function navegarPara(tela: string, secaoId?: string) {
   color: #111111;
 }
 
-
-/* === ANIMAÇÃO DE FADE IN === */
 @keyframes fadeInHero {
   from {
     opacity: 0;
-    transform: translateY(20px); /* Dá um leve efeito de subir enquanto surge */
+    transform: translateY(20px);
   }
   to {
     opacity: 1;

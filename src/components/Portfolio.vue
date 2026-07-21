@@ -3,19 +3,19 @@ import { ref, computed } from 'vue'
 
 import certificadoTecnico from '../assets/Certificado_Desenvolvedor_web.pdf?url';
 import certificadoStackX from '../assets/Certificado_Stackx.png?url';
-// IMPORT CORRETO DA IMAGEM DO MUUN FREE (ajuste o nome do arquivo se necessário):
 import printMuunFree from "../assets/print_muunfree.jpg?url";
 
 defineEmits(['voltar'])
 
-// 1. Botões de filtro superiores
+// 1. Botões de filtro superiores (Adicionado CI/CD)
 const filtros = ref([
   { id: 'todos', nome: 'Todos', icone: '📂', usarSvg: false },
   { id: 'web_base', nome: 'Web Base', icone: '🌐', usarSvg: false },
   { id: 'controle_versao', nome: 'Controle de Versão', icone: '🌿', usarSvg: false }, 
   { id: 'frameworks', nome: 'Frameworks', icone: '🟢', usarSvg: false },
   { id: 'banco_dados', nome: 'Banco de Dados', icone: '🗄️', usarSvg: false },
-  { id: 'back_end', nome: 'Back-End', icone: '⚙️', usarSvg: false }
+  { id: 'back_end', nome: 'Back-End', icone: '⚙️', usarSvg: false },
+  { id: 'ci_cd', nome: 'CI/CD', icone: '🚀', usarSvg: false }
 ])
 
 const filtroSelecionado = ref('todos')
@@ -29,6 +29,7 @@ interface Projeto {
   banco_dados: string[];
   controle_versao: string[];
   back_end: string[];
+  ci_cd: string[]; // <-- Adicionado na Interface
   link: string;
   link_painel_administrativo?: string; 
   repositorio?: string;
@@ -38,7 +39,7 @@ interface Projeto {
   imagem: string;
 }
 
-// 2. Seus Sistemas
+// 2. Seus Sistemas (Com dados de Controle de Versão e CI/CD preenchidos)
 const meusProjetos = ref<Projeto[]>([
   {
     id: 1,
@@ -49,6 +50,7 @@ const meusProjetos = ref<Projeto[]>([
     banco_dados: ['Firebase'],
     controle_versao: ['Git', 'GitHub'],
     back_end: ['Node.js'],
+    ci_cd: ['GitHub Actions', 'Fastlane'],
     link: 'https://meu-painel-m7i3.vercel.app/', 
     link_painel_administrativo: 'https://meu-painel-m7i3.vercel.app/', 
     repositorio_painel: 'https://github.com/lucaslopes9/meu_Painel.git', 
@@ -64,6 +66,7 @@ const meusProjetos = ref<Projeto[]>([
     banco_dados: [],
     controle_versao: ['Git', 'GitHub'],
     back_end: [],
+    ci_cd: ['Vercel Deploy'],
     link: 'https://relogio-digital-zeta.vercel.app/',
     repositorio: 'https://github.com/lucaslopes9/relogioDigital',
     imagem: 'https://images.unsplash.com/photo-1508962914676-134849a727f0?w=500&auto=format&fit=crop&q=60'
@@ -77,13 +80,12 @@ const meusProjetos = ref<Projeto[]>([
     banco_dados: ['PostgreSQL'],
     controle_versao: ['Git', 'GitHub'],
     back_end: ['Node.js'],
+    ci_cd: ['Vercel Deploy'],
     link: 'https://conecta-talentos-lope.vercel.app',
     repositorio: 'https://github.com/lucaslopes9/Conecta_talentos.git',
     imagem: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=500&auto=format&fit=crop&q=60'
   },
-  
-
-{
+  {
     id: 4,
     titulo: 'Sistema de Rifas Automatizado',
     descricao: 'Plataforma de sorteios online com geração de cotas e integração completa de pagamentos via Multicaixa Express.',
@@ -92,15 +94,11 @@ const meusProjetos = ref<Projeto[]>([
     banco_dados: ['MySQL'],
     controle_versao: ['Git', 'GitHub'],
     back_end: ['PHP', 'Laravel'],
-    link: 'https://github.com/lucaslopes9/Sistemas_de_Rifas.git', // <-- Altere aqui para o link de acesso da aplicação (ex: Vercel, Heroku, ou o próprio GitHub temporariamente)
+    ci_cd: [],
+    link: 'https://github.com/lucaslopes9/Sistemas_de_Rifas.git', 
     repositorio: 'https://github.com/lucaslopes9/Sistemas_de_Rifas.git',
     imagem: 'https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=500&auto=format&fit=crop&q=60'
   },
-
-
-
-
-
   {
     id: 5,
     titulo: 'Make Your Dog',
@@ -110,43 +108,36 @@ const meusProjetos = ref<Projeto[]>([
     banco_dados: ['JSON Server'],
     controle_versao: ['Git', 'GitHub'],
     back_end: ['Node.js'],
+    ci_cd: ['Vercel Deploy'],
     link: 'https://makeyour-d-og-oficial-neon.vercel.app/',
     repositorio: 'https://github.com/lucaslopes9/MakeyourDOgOficial.git',
     imagem: 'https://images.unsplash.com/photo-1619740455993-9e612b1af08a?w=500&auto=format&fit=crop&q=60'
   },
-  
-
-{
+  {
     id: 6,
     titulo: 'Loja Virtual de Jogos',
-    descricao: '🏆 [PROJETO DE CONCLUSÃO DE CURSO LIVRE: desenvolvimento web] Um e-commerce interativo com catálogo responsivo, carrinho de compras funcional e filtros de busca avançados.',
+    descricao: '🏆 Um e-commerce interativo com catálogo responsivo, carrinho de compras funcional e filtros de busca avançados.',
     web_base: ['HTML', 'CSS', 'JavaScript'],
     frameworks: [],
     banco_dados: [],
     controle_versao: ['Git', 'GitHub'],
     back_end: [],
+    ci_cd: ['Vercel Deploy'],
     link: 'https://loja-virtual-de-jogos-finalizada.vercel.app',
     certificado: certificadoTecnico,
-    repositorio: 'https://github.com/lucaslopes9/Loja_Virtual_de_jogos_finalizada.git', // <-- Substitua pelo link correto do repositório aqui!
+    repositorio: 'https://github.com/lucaslopes9/Loja_Virtual_de_jogos_finalizada.git', 
     imagem: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop&q=60'
   },
-
-
-
-
-
-
-
-
   {
     id: 7,
     titulo: 'Codifica Projeto Chat',
-    descricao: 'Projeto de chat desenvolvido durante o curso livre de desenvolvimento web que simula a comunicação em tempo real entre dois usuários. A aplicação utiliza manipulação dinâmica do DOM e lógica de programação para renderização de mensagens e controle de fluxos da interface.',
+    descricao: 'Projeto de chat desenvolvido que simula a comunicação em tempo real entre dois usuários. A aplicação utiliza manipulação dinâmica do DOM e lógica de programação.',
     web_base: ['HTML', 'CSS', 'Jquery'],
     frameworks: [], 
     banco_dados: [], 
     controle_versao: ['Git', 'GitHub'],
     back_end: [], 
+    ci_cd: ['Vercel Deploy'],
     certificado: certificadoTecnico,
     repositorio: 'https://github.com/lucaslopes9/codifica-projeto-chat.git',
     link: 'https://codifica-projeto-chat.vercel.app/',
@@ -155,13 +146,14 @@ const meusProjetos = ref<Projeto[]>([
   {
     id: 8,
     titulo: 'Muun Free',
-    descricao: 'Plataforma desenvolvida em WordPress para conectar programadores freelancers a potenciais clientes. Criado como conclusão de curso na StackX, o projeto utilizou Metodologias Ágeis e a plataforma Bitrix24 para a gestão de tarefas e controle de entregas da equipe.',
+    descricao: 'Plataforma desenvolvida em WordPress para conectar programadores freelancers a potenciais clientes. Criado com Metodologias Ágeis e platforma Bitrix24.',
     web_base: ['HTML', 'CSS', 'JavaScript'],
     frameworks: ['WordPress'],
     banco_dados: ['MySQL'],
     controle_versao: ['Git', 'GitHub'],
     back_end: ['PHP'],
-    link: printMuunFree, // <-- Abre o print correto importado lá em cima
+    ci_cd: [],
+    link: printMuunFree, 
     repositorio: '#',
     certificado: certificadoStackX, 
     imagem: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&auto=format&fit=crop&q=60'
@@ -212,24 +204,23 @@ function selecionarFiltro(id: string) {
           <p class="descricao">{{ projeto.descricao }}</p>
           
           <div class="tags">
-            <!-- Renderização Dinâmica de Categorias -->
+            <!-- Renderização Dinâmica de Categorias (Incluído controle_versao e ci_cd) -->
             <span v-for="tag in projeto.web_base" :key="tag" class="tag web">{{ tag }}</span>
             <span v-for="tag in projeto.frameworks" :key="tag" class="tag framework">{{ tag }}</span>
             <span v-for="tag in projeto.banco_dados" :key="tag" class="tag bd">{{ tag }}</span>
             <span v-for="tag in projeto.back_end" :key="tag" class="tag back">{{ tag }}</span>
+            <span v-for="tag in projeto.controle_versao" :key="tag" class="tag git">{{ tag }}</span>
+            <span v-for="tag in projeto.ci_cd" :key="tag" class="tag cicd">{{ tag }}</span>
           </div>
 
           <div class="card-links">
-            <!-- Link principal de acesso -->
             <a v-if="projeto.link && projeto.link !== '#'" :href="projeto.link" target="_blank" class="btn-link">Acessar Projeto</a>
             
-            <!-- EXCLUSIVO DO UAIGO: Repositórios Separados para Painel (Web) e Aplicativo -->
             <template v-if="projeto.repositorio_painel || projeto.repositorio_aplicativo">
               <a v-if="projeto.repositorio_painel" :href="projeto.repositorio_painel" target="_blank" class="btn-repo">Repo Web (Painel)</a>
               <a v-if="projeto.repositorio_aplicativo" :href="projeto.repositorio_aplicativo" target="_blank" class="btn-repo">Repo App</a>
             </template>
             
-            <!-- Código Fonte Genérico para os outros projetos que têm apenas 'repositorio' -->
             <a v-else-if="projeto.repositorio && projeto.repositorio !== '#'" :href="projeto.repositorio" target="_blank" class="btn-repo">Código Fonte</a>
             
             <a v-if="projeto.certificado" :href="projeto.certificado" target="_blank" class="btn-certificado">📜 Certificado</a>
@@ -248,7 +239,6 @@ function selecionarFiltro(id: string) {
   margin: 0 auto;
 }
 
-/* Botão Voltar com animação física */
 .btn-voltar {
   background-color: #333;
   color: #fff;
@@ -277,7 +267,6 @@ function selecionarFiltro(id: string) {
   margin-bottom: 30px;
 }
 
-/* Botões de Filtro com animação elástica de flutuação */
 .filtro-btn {
   padding: 8px 16px;
   border: 1px solid #444;
@@ -293,10 +282,10 @@ function selecionarFiltro(id: string) {
 }
 
 .filtro-btn:hover {
-  transform: translateY(-4px); /* Sobe de posição */
+  transform: translateY(-4px);
   border-color: #555;
   color: #fff;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Ganha profundidade */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
 }
 
 .filtro-btn.ativo {
@@ -311,7 +300,7 @@ function selecionarFiltro(id: string) {
 }
 
 .filtro-btn:active {
-  transform: translateY(-1px); /* Resposta tátil ao clique */
+  transform: translateY(-1px);
 }
 
 .projetos-grid {
@@ -320,13 +309,12 @@ function selecionarFiltro(id: string) {
   gap: 20px;
 }
 
-/* CARDS PRETOS / ESCUROS */
 .projeto-card {
   border: 1px solid #333;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  background: #1e1e1e; /* Fundo escuro */
+  background: #1e1e1e;
   display: flex;
   flex-direction: column;
 }
@@ -344,16 +332,15 @@ function selecionarFiltro(id: string) {
   flex-grow: 1;
 }
 
-/* TEXTO DO CARD CLARO */
 .card-conteudo h3 {
   margin-top: 0;
   margin-bottom: 10px;
-  color: #ffffff; /* Título Branco */
+  color: #ffffff;
 }
 
 .descricao {
   font-size: 0.9rem;
-  color: #bbbbbb; /* Descrição Cinza claro */
+  color: #bbbbbb;
   flex-grow: 1;
   line-height: 1.4;
 }
@@ -372,20 +359,21 @@ function selecionarFiltro(id: string) {
   font-weight: bold;
 }
 
-/* Cores das tags adaptadas para alto contraste no dark mode */
+/* Cores das tags em alto contraste no dark mode */
 .tag.web { background-color: #1a365d; color: #90cdf4; }
 .tag.framework { background-color: #1c4532; color: #9ae6b4; }
 .tag.bd { background-color: #744210; color: #fbd38d; }
 .tag.back { background-color: #4a128c; color: #e0b0ff; }
+.tag.git { background-color: #2c3e50; color: #ecf0f1; } /* Nova cor para Git */
+.tag.cicd { background-color: #7f8c8d; color: #f1c40f; } /* Nova cor para CI/CD */
 
 .card-links {
   display: flex;
   gap: 10px;
   margin-top: auto;
-  flex-wrap: wrap; /* Permite que os botões quebrem linha se faltar espaço */
+  flex-wrap: wrap;
 }
 
-/* Botões de links dentro dos cards com animação suave de zoom */
 .card-links a {
   text-decoration: none;
   font-size: 0.85rem;
@@ -393,14 +381,14 @@ function selecionarFiltro(id: string) {
   border-radius: 4px;
   text-align: center;
   flex: 1;
-  min-width: 100px; /* Garante tamanho mínimo para ficar legível em telas menores */
+  min-width: 100px;
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
               background-color 0.2s ease, 
               box-shadow 0.2s ease;
 }
 
 .card-links a:hover {
-  transform: scale(1.05); /* Efeito de expansão leve */
+  transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
@@ -437,23 +425,22 @@ function selecionarFiltro(id: string) {
   background-color: #ffa726;
 }
 
-
-/* Aplica o cinza claro no fundo de toda a página e remove as bordas brancas */
 :global(body) {
   background-color: #f8f8f8 !important;
   margin: 0;
   padding: 0;
 }
 
-/* Garante que o container do portfólio também use essa cor de fundo */
-.portfolio-container {
-  padding: 20px;
-  font-family: sans-serif;
-  max-width: 1200px;
-  margin: 0 auto;
-  background-color: #f8f8f8c0;
+
+.projeto-card:hover {
+  border-color: #3b82f6; /* Azul vibrante */
+  box-shadow: 0 6px 15px rgba(59, 130, 246, 0.25); /* Sutil reflexo azulado */
+  transform: translateY(-3px); /* Pequeno efeito de elevação */
 }
 
 
 
+.portfolio-container {
+  background-color: #f8f8f8c0;
+}
 </style>
